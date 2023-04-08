@@ -1,0 +1,8 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "repository": "https://github.com/hayakawakoichi/todo-app",
+  "author": "koichi.hayakawa",
+  "license": "MIT",
+  "private": true
+}
