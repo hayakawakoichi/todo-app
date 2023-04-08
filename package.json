@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "web": "yarn workspace web",
     "hasura": "yarn workspace hasura"
   }
 }
