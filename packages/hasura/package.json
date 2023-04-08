@@ -1,0 +1,13 @@
+{
+  "name": "hasura",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "koichi.hayakawa",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "docker-compose build",
+    "up": "docker-compose up",
+    "down": "docker-compose down"
+  }
+}

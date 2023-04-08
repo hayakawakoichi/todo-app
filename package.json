@@ -4,5 +4,11 @@
   "repository": "https://github.com/hayakawakoichi/todo-app",
   "author": "koichi.hayakawa",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "hasura": "yarn workspace hasura"
+  }
 }
