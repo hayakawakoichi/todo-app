@@ -1,6 +1,12 @@
+import { useUser } from '@auth0/nextjs-auth0/client'
 import Head from 'next/head'
 
 export default function Home() {
+    const { user, error, isLoading } = useUser()
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>{error.message}</div>
+
     return (
         <>
             <Head>
@@ -15,7 +21,17 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>index.ts</main>
+            <main>
+                <a href="/api/auth/login">Login</a>
+                <a href="/api/auth/logout">Logout</a>
+
+                {user && (
+                    <div>
+                        <h2>{user.name}</h2>
+                        <p>{user.email}</p>
+                    </div>
+                )}
+            </main>
         </>
     )
 }

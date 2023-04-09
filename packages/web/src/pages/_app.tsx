@@ -1,3 +1,4 @@
+import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { MantineProvider } from '@mantine/core'
 import type { AppProps } from 'next/app'
 
@@ -11,7 +12,9 @@ export default function App({ Component, pageProps }: AppProps) {
                 colorScheme: 'light',
             }}
         >
-            <Component {...pageProps} />
+            <UserProvider>
+                <Component {...pageProps} />
+            </UserProvider>
         </MantineProvider>
     )
 }
