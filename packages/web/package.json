@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "eslint --fix ./src",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "markuplint": "markuplint \"./src/**/*.{jsx,tsx}\""
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.4.0",
@@ -28,9 +29,13 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@markuplint/jsx-parser": "^3.6.1",
+    "@markuplint/pug-parser": "^3.6.1",
+    "@markuplint/react-spec": "^3.6.1",
     "eslint": "^8.38.0",
     "eslint-config-next": "^13.3.0",
     "eslint-config-prettier": "^8.8.0",
+    "markuplint": "^3.7.0",
     "prettier": "^2.8.7"
   }
 }
