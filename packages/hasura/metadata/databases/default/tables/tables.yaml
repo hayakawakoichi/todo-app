@@ -1,2 +1,3 @@
 - "!include public_group.yaml"
+- "!include public_group_member.yaml"
 - "!include public_user.yaml"
