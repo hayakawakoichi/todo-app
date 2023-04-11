@@ -13,3 +13,10 @@ array_relationships:
         table:
           schema: public
           name: group_member
+  - name: tasks
+    using:
+      foreign_key_constraint_on:
+        column: group_id
+        table:
+          schema: public
+          name: task
