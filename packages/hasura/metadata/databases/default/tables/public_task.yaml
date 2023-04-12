@@ -8,3 +8,47 @@ object_relationships:
   - name: user
     using:
       foreign_key_constraint_on: created_by
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - id
+        - name
+        - priority
+        - deadline
+        - created_by
+        - group_id
+        - created_at
+        - updated_at
+        - deleted_at
+      backend_only: false
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+        - priority
+        - created_at
+        - deadline
+        - deleted_at
+        - updated_at
+        - created_by
+        - group_id
+        - id
+      filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+        - priority
+        - created_at
+        - deadline
+        - deleted_at
+        - updated_at
+        - created_by
+        - group_id
+        - id
+      filter: {}
+      check: null
