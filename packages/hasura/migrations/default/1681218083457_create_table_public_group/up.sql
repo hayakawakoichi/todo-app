@@ -1,2 +1,0 @@
-CREATE TABLE "public"."group" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "name" text NOT NULL, "created_by" uuid NOT NULL, "created_at" date NOT NULL DEFAULT now(), "updated_at" date NOT NULL DEFAULT now(), "deleted_at" date, PRIMARY KEY ("id") , FOREIGN KEY ("created_by") REFERENCES "public"."user"("id") ON UPDATE restrict ON DELETE restrict);COMMENT ON TABLE "public"."group" IS E'user group';
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
