@@ -21,3 +21,15 @@ REDIRECT_URI="http://localhost:3000/api/auth/callback"
 POST_LOGOUT_REDIRECT_URI=http://localhost:3000/
 SESSION_COOKIE_SECRET='xxxxx'
 ```
+
+## 開発メモ
+
+Auth0 のログイン時に走る Action (Create DB User) のテストをしたい時。
+
+1. local の 8080 番ポートを公開する。
+
+```
+npx ngrok http 8080
+```
+
+2. Actions コールバック関数内の localhost:8080 を、Forwarding の URL https://hogehoge.jp.ngrok.io に置き換える。
