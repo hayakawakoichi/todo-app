@@ -1,5 +1,54 @@
+import React, { Fragment } from 'react'
+
+import { gql, useQuery } from '@apollo/client'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import Head from 'next/head'
+
+const GET_USERS = gql`
+    query GetUsers {
+        user {
+            name
+            tasks {
+                name
+            }
+            groups {
+                name
+            }
+        }
+    }
+`
+
+/**
+ * 疎通確認用
+ */
+const User = () => {
+    const { data, loading, error } = useQuery(GET_USERS)
+
+    if (loading) return <div>Loading...</div>
+    if (error) return <div>{error.message}</div>
+
+    return (
+        <div>
+            {data.user.map((user: any, index: number) => (
+                <Fragment key={index}>
+                    <h2>{user.name}</h2>
+                    <h3>Tasks</h3>
+                    <ul>
+                        {user.tasks?.map((task: any) => (
+                            <li key={task.name}>{task.name}</li>
+                        ))}
+                    </ul>
+                    <h3>Groups</h3>
+                    <ul>
+                        {user.groups?.map((group: any) => (
+                            <li key={group.name}>{group.name}</li>
+                        ))}
+                    </ul>
+                </Fragment>
+            ))}
+        </div>
+    )
+}
 
 export default function Home() {
     const { user, error, isLoading } = useUser()
@@ -26,10 +75,13 @@ export default function Home() {
                 <a href="/api/auth/logout">Logout</a>
 
                 {user && (
-                    <div>
-                        <h2>{user.name}</h2>
-                        <p>{user.email}</p>
-                    </div>
+                    <>
+                        <div>
+                            <h2>{user.name}</h2>
+                            <p>{user.email}</p>
+                        </div>
+                        <User />
+                    </>
                 )}
             </main>
         </>
