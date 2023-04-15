@@ -6,14 +6,18 @@ services:
       - db_data:/var/lib/postgresql/data
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "postgres", "-U", "postgres"]
   graphql-engine:
-    image: hasura/graphql-engine:v2.6.0-beta.2
+    build:
+      context: .
     ports:
       - "8080:8080"
     depends_on:
-      - "postgres"
+      postgres:
+        condition: service_healthy
     restart: always
     env_file:
-      - .env
+      - ./.env
 volumes:
   db_data:
