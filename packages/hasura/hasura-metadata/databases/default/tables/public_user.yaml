@@ -28,28 +28,37 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - id
-        - user_id
-        - name
         - created_at
-        - updated_at
         - deleted_at
+        - email
+        - family_name
+        - given_name
+        - id
+        - name
+        - updated_at
+        - user_id
       backend_only: false
 select_permissions:
   - role: user
     permission:
       columns:
-        - name
-        - user_id
-        - created_at
-        - deleted_at
-        - updated_at
         - id
+        - user_id
+        - name
+        - created_at
+        - updated_at
+        - deleted_at
+        - family_name
+        - given_name
+        - email
       filter: {}
 update_permissions:
   - role: user
     permission:
       columns:
+        - email
+        - family_name
+        - given_name
         - name
         - user_id
         - created_at
