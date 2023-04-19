@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import Head from 'next/head'
 
-const GET_USERS = gql`
+import { graphql } from '@/gql'
+
+const GET_USERS = graphql(`
     query GetUsers {
         user {
             name
@@ -16,7 +18,7 @@ const GET_USERS = gql`
             }
         }
     }
-`
+`)
 
 /**
  * 疎通確認用
@@ -29,18 +31,18 @@ const User = () => {
 
     return (
         <div>
-            {data.user.map((user: any, index: number) => (
+            {data?.user.map((user, index) => (
                 <Fragment key={index}>
                     <h2>{user.name}</h2>
                     <h3>Tasks</h3>
                     <ul>
-                        {user.tasks?.map((task: any) => (
+                        {user.tasks?.map((task) => (
                             <li key={task.name}>{task.name}</li>
                         ))}
                     </ul>
                     <h3>Groups</h3>
                     <ul>
-                        {user.groups?.map((group: any) => (
+                        {user.groups?.map((group) => (
                             <li key={group.name}>{group.name}</li>
                         ))}
                     </ul>
