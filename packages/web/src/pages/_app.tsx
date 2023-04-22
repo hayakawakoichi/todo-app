@@ -2,6 +2,7 @@ import { ApolloProvider } from '@apollo/client'
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { MantineProvider } from '@mantine/core'
 import type { AppProps } from 'next/app'
+import '../styles/globals.css'
 
 import { client } from '@/lib/ApolloClient'
 
