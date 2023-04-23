@@ -59,7 +59,7 @@ export type String_Comparison_Exp = {
 export type Group = {
     __typename?: 'group'
     created_at: Scalars['timestamptz']
-    created_by: Scalars['uuid']
+    created_by: Scalars['String']
     deleted_at?: Maybe<Scalars['timestamptz']>
     /** An array relationship */
     group_members: Array<Group_Member>
@@ -110,7 +110,7 @@ export type Group_Bool_Exp = {
     _not?: InputMaybe<Group_Bool_Exp>
     _or?: InputMaybe<Array<Group_Bool_Exp>>
     created_at?: InputMaybe<Timestamptz_Comparison_Exp>
-    created_by?: InputMaybe<Uuid_Comparison_Exp>
+    created_by?: InputMaybe<String_Comparison_Exp>
     deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
     group_members?: InputMaybe<Group_Member_Bool_Exp>
     id?: InputMaybe<Uuid_Comparison_Exp>
@@ -129,7 +129,7 @@ export enum Group_Constraint {
 /** input type for inserting data into table "group" */
 export type Group_Insert_Input = {
     created_at?: InputMaybe<Scalars['timestamptz']>
-    created_by?: InputMaybe<Scalars['uuid']>
+    created_by?: InputMaybe<Scalars['String']>
     deleted_at?: InputMaybe<Scalars['timestamptz']>
     group_members?: InputMaybe<Group_Member_Arr_Rel_Insert_Input>
     id?: InputMaybe<Scalars['uuid']>
@@ -159,9 +159,7 @@ export type Group_Member = {
     group_id: Scalars['uuid']
     id: Scalars['uuid']
     updated_at: Scalars['timestamptz']
-    /** An object relationship */
-    user: User
-    user_id: Scalars['uuid']
+    user_id: Scalars['String']
 }
 
 /** order by aggregate values of table "group_member" */
@@ -189,8 +187,7 @@ export type Group_Member_Bool_Exp = {
     group_id?: InputMaybe<Uuid_Comparison_Exp>
     id?: InputMaybe<Uuid_Comparison_Exp>
     updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
-    user?: InputMaybe<User_Bool_Exp>
-    user_id?: InputMaybe<Uuid_Comparison_Exp>
+    user_id?: InputMaybe<String_Comparison_Exp>
 }
 
 /** unique or primary key constraints on table "group_member" */
@@ -207,8 +204,7 @@ export type Group_Member_Insert_Input = {
     group_id?: InputMaybe<Scalars['uuid']>
     id?: InputMaybe<Scalars['uuid']>
     updated_at?: InputMaybe<Scalars['timestamptz']>
-    user?: InputMaybe<User_Obj_Rel_Insert_Input>
-    user_id?: InputMaybe<Scalars['uuid']>
+    user_id?: InputMaybe<Scalars['String']>
 }
 
 /** order by max() on columns of table "group_member" */
@@ -255,7 +251,6 @@ export type Group_Member_Order_By = {
     group_id?: InputMaybe<Order_By>
     id?: InputMaybe<Order_By>
     updated_at?: InputMaybe<Order_By>
-    user?: InputMaybe<User_Order_By>
     user_id?: InputMaybe<Order_By>
 }
 
@@ -287,7 +282,7 @@ export type Group_Member_Set_Input = {
     group_id?: InputMaybe<Scalars['uuid']>
     id?: InputMaybe<Scalars['uuid']>
     updated_at?: InputMaybe<Scalars['timestamptz']>
-    user_id?: InputMaybe<Scalars['uuid']>
+    user_id?: InputMaybe<Scalars['String']>
 }
 
 /** update columns of table "group_member" */
@@ -376,7 +371,7 @@ export enum Group_Select_Column {
 /** input type for updating data in table "group" */
 export type Group_Set_Input = {
     created_at?: InputMaybe<Scalars['timestamptz']>
-    created_by?: InputMaybe<Scalars['uuid']>
+    created_by?: InputMaybe<Scalars['String']>
     deleted_at?: InputMaybe<Scalars['timestamptz']>
     id?: InputMaybe<Scalars['uuid']>
     name?: InputMaybe<Scalars['String']>
@@ -688,12 +683,12 @@ export type Subscription_RootUser_By_PkArgs = {
 export type Task = {
     __typename?: 'task'
     created_at: Scalars['timestamptz']
-    created_by: Scalars['uuid']
+    created_by: Scalars['String']
     deadline?: Maybe<Scalars['timestamptz']>
     deleted_at?: Maybe<Scalars['timestamptz']>
     /** An object relationship */
-    group: Group
-    group_id: Scalars['uuid']
+    group?: Maybe<Group>
+    group_id?: Maybe<Scalars['uuid']>
     id: Scalars['uuid']
     name: Scalars['String']
     priority: Scalars['String']
@@ -722,7 +717,7 @@ export type Task_Bool_Exp = {
     _not?: InputMaybe<Task_Bool_Exp>
     _or?: InputMaybe<Array<Task_Bool_Exp>>
     created_at?: InputMaybe<Timestamptz_Comparison_Exp>
-    created_by?: InputMaybe<Uuid_Comparison_Exp>
+    created_by?: InputMaybe<String_Comparison_Exp>
     deadline?: InputMaybe<Timestamptz_Comparison_Exp>
     deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
     group?: InputMaybe<Group_Bool_Exp>
@@ -743,7 +738,6 @@ export enum Task_Constraint {
 /** input type for inserting data into table "task" */
 export type Task_Insert_Input = {
     created_at?: InputMaybe<Scalars['timestamptz']>
-    created_by?: InputMaybe<Scalars['uuid']>
     deadline?: InputMaybe<Scalars['timestamptz']>
     deleted_at?: InputMaybe<Scalars['timestamptz']>
     group?: InputMaybe<Group_Obj_Rel_Insert_Input>
@@ -842,7 +836,7 @@ export enum Task_Select_Column {
 /** input type for updating data in table "task" */
 export type Task_Set_Input = {
     created_at?: InputMaybe<Scalars['timestamptz']>
-    created_by?: InputMaybe<Scalars['uuid']>
+    created_by?: InputMaybe<Scalars['String']>
     deadline?: InputMaybe<Scalars['timestamptz']>
     deleted_at?: InputMaybe<Scalars['timestamptz']>
     group_id?: InputMaybe<Scalars['uuid']>
@@ -892,8 +886,9 @@ export type User = {
     __typename?: 'user'
     created_at: Scalars['timestamptz']
     deleted_at?: Maybe<Scalars['timestamptz']>
-    /** An array relationship */
-    group_members: Array<Group_Member>
+    email: Scalars['String']
+    family_name?: Maybe<Scalars['String']>
+    given_name?: Maybe<Scalars['String']>
     /** An array relationship */
     groups: Array<Group>
     id: Scalars['uuid']
@@ -902,15 +897,6 @@ export type User = {
     tasks: Array<Task>
     updated_at: Scalars['timestamptz']
     user_id: Scalars['String']
-}
-
-/** columns and relationships of "user" */
-export type UserGroup_MembersArgs = {
-    distinct_on?: InputMaybe<Array<Group_Member_Select_Column>>
-    limit?: InputMaybe<Scalars['Int']>
-    offset?: InputMaybe<Scalars['Int']>
-    order_by?: InputMaybe<Array<Group_Member_Order_By>>
-    where?: InputMaybe<Group_Member_Bool_Exp>
 }
 
 /** columns and relationships of "user" */
@@ -938,7 +924,9 @@ export type User_Bool_Exp = {
     _or?: InputMaybe<Array<User_Bool_Exp>>
     created_at?: InputMaybe<Timestamptz_Comparison_Exp>
     deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
-    group_members?: InputMaybe<Group_Member_Bool_Exp>
+    email?: InputMaybe<String_Comparison_Exp>
+    family_name?: InputMaybe<String_Comparison_Exp>
+    given_name?: InputMaybe<String_Comparison_Exp>
     groups?: InputMaybe<Group_Bool_Exp>
     id?: InputMaybe<Uuid_Comparison_Exp>
     name?: InputMaybe<String_Comparison_Exp>
@@ -959,7 +947,9 @@ export enum User_Constraint {
 export type User_Insert_Input = {
     created_at?: InputMaybe<Scalars['timestamptz']>
     deleted_at?: InputMaybe<Scalars['timestamptz']>
-    group_members?: InputMaybe<Group_Member_Arr_Rel_Insert_Input>
+    email?: InputMaybe<Scalars['String']>
+    family_name?: InputMaybe<Scalars['String']>
+    given_name?: InputMaybe<Scalars['String']>
     groups?: InputMaybe<Group_Arr_Rel_Insert_Input>
     id?: InputMaybe<Scalars['uuid']>
     name?: InputMaybe<Scalars['String']>
@@ -995,7 +985,9 @@ export type User_On_Conflict = {
 export type User_Order_By = {
     created_at?: InputMaybe<Order_By>
     deleted_at?: InputMaybe<Order_By>
-    group_members_aggregate?: InputMaybe<Group_Member_Aggregate_Order_By>
+    email?: InputMaybe<Order_By>
+    family_name?: InputMaybe<Order_By>
+    given_name?: InputMaybe<Order_By>
     groups_aggregate?: InputMaybe<Group_Aggregate_Order_By>
     id?: InputMaybe<Order_By>
     name?: InputMaybe<Order_By>
@@ -1016,6 +1008,12 @@ export enum User_Select_Column {
     /** column name */
     DeletedAt = 'deleted_at',
     /** column name */
+    Email = 'email',
+    /** column name */
+    FamilyName = 'family_name',
+    /** column name */
+    GivenName = 'given_name',
+    /** column name */
     Id = 'id',
     /** column name */
     Name = 'name',
@@ -1029,6 +1027,9 @@ export enum User_Select_Column {
 export type User_Set_Input = {
     created_at?: InputMaybe<Scalars['timestamptz']>
     deleted_at?: InputMaybe<Scalars['timestamptz']>
+    email?: InputMaybe<Scalars['String']>
+    family_name?: InputMaybe<Scalars['String']>
+    given_name?: InputMaybe<Scalars['String']>
     id?: InputMaybe<Scalars['uuid']>
     name?: InputMaybe<Scalars['String']>
     updated_at?: InputMaybe<Scalars['timestamptz']>
@@ -1041,6 +1042,12 @@ export enum User_Update_Column {
     CreatedAt = 'created_at',
     /** column name */
     DeletedAt = 'deleted_at',
+    /** column name */
+    Email = 'email',
+    /** column name */
+    FamilyName = 'family_name',
+    /** column name */
+    GivenName = 'given_name',
     /** column name */
     Id = 'id',
     /** column name */
@@ -1064,68 +1071,168 @@ export type Uuid_Comparison_Exp = {
     _nin?: InputMaybe<Array<Scalars['uuid']>>
 }
 
-export type GetUsersQueryVariables = Exact<{ [key: string]: never }>
+export type InsertTaskMutationVariables = Exact<{
+    deadline?: InputMaybe<Scalars['timestamptz']>
+    name?: InputMaybe<Scalars['String']>
+    priority?: InputMaybe<Scalars['String']>
+}>
 
-export type GetUsersQuery = {
-    __typename?: 'query_root'
-    user: Array<{
-        __typename?: 'user'
-        name: string
-        tasks: Array<{ __typename?: 'task'; name: string }>
-        groups: Array<{ __typename?: 'group'; name: string }>
-    }>
+export type InsertTaskMutation = {
+    __typename?: 'mutation_root'
+    insert_task?: {
+        __typename?: 'task_mutation_response'
+        affected_rows: number
+    } | null
 }
 
-export const GetUsersDocument = {
+export const InsertTaskDocument = {
     kind: 'Document',
     definitions: [
         {
             kind: 'OperationDefinition',
-            operation: 'query',
-            name: { kind: 'Name', value: 'GetUsers' },
+            operation: 'mutation',
+            name: { kind: 'Name', value: 'InsertTask' },
+            variableDefinitions: [
+                {
+                    kind: 'VariableDefinition',
+                    variable: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'deadline' },
+                    },
+                    type: {
+                        kind: 'NamedType',
+                        name: { kind: 'Name', value: 'timestamptz' },
+                    },
+                    defaultValue: {
+                        kind: 'StringValue',
+                        value: '',
+                        block: false,
+                    },
+                },
+                {
+                    kind: 'VariableDefinition',
+                    variable: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'name' },
+                    },
+                    type: {
+                        kind: 'NamedType',
+                        name: { kind: 'Name', value: 'String' },
+                    },
+                    defaultValue: {
+                        kind: 'StringValue',
+                        value: '',
+                        block: false,
+                    },
+                },
+                {
+                    kind: 'VariableDefinition',
+                    variable: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'priority' },
+                    },
+                    type: {
+                        kind: 'NamedType',
+                        name: { kind: 'Name', value: 'String' },
+                    },
+                    defaultValue: {
+                        kind: 'StringValue',
+                        value: '',
+                        block: false,
+                    },
+                },
+            ],
             selectionSet: {
                 kind: 'SelectionSet',
                 selections: [
                     {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'user' },
+                        name: { kind: 'Name', value: 'insert_task' },
+                        arguments: [
+                            {
+                                kind: 'Argument',
+                                name: { kind: 'Name', value: 'objects' },
+                                value: {
+                                    kind: 'ObjectValue',
+                                    fields: [
+                                        {
+                                            kind: 'ObjectField',
+                                            name: {
+                                                kind: 'Name',
+                                                value: 'created_at',
+                                            },
+                                            value: {
+                                                kind: 'StringValue',
+                                                value: 'now()',
+                                                block: false,
+                                            },
+                                        },
+                                        {
+                                            kind: 'ObjectField',
+                                            name: {
+                                                kind: 'Name',
+                                                value: 'deadline',
+                                            },
+                                            value: {
+                                                kind: 'Variable',
+                                                name: {
+                                                    kind: 'Name',
+                                                    value: 'deadline',
+                                                },
+                                            },
+                                        },
+                                        {
+                                            kind: 'ObjectField',
+                                            name: {
+                                                kind: 'Name',
+                                                value: 'name',
+                                            },
+                                            value: {
+                                                kind: 'Variable',
+                                                name: {
+                                                    kind: 'Name',
+                                                    value: 'name',
+                                                },
+                                            },
+                                        },
+                                        {
+                                            kind: 'ObjectField',
+                                            name: {
+                                                kind: 'Name',
+                                                value: 'priority',
+                                            },
+                                            value: {
+                                                kind: 'Variable',
+                                                name: {
+                                                    kind: 'Name',
+                                                    value: 'priority',
+                                                },
+                                            },
+                                        },
+                                        {
+                                            kind: 'ObjectField',
+                                            name: {
+                                                kind: 'Name',
+                                                value: 'updated_at',
+                                            },
+                                            value: {
+                                                kind: 'StringValue',
+                                                value: 'now()',
+                                                block: false,
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
                         selectionSet: {
                             kind: 'SelectionSet',
                             selections: [
                                 {
                                     kind: 'Field',
-                                    name: { kind: 'Name', value: 'name' },
-                                },
-                                {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'tasks' },
-                                    selectionSet: {
-                                        kind: 'SelectionSet',
-                                        selections: [
-                                            {
-                                                kind: 'Field',
-                                                name: {
-                                                    kind: 'Name',
-                                                    value: 'name',
-                                                },
-                                            },
-                                        ],
-                                    },
-                                },
-                                {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'groups' },
-                                    selectionSet: {
-                                        kind: 'SelectionSet',
-                                        selections: [
-                                            {
-                                                kind: 'Field',
-                                                name: {
-                                                    kind: 'Name',
-                                                    value: 'name',
-                                                },
-                                            },
-                                        ],
+                                    name: {
+                                        kind: 'Name',
+                                        value: 'affected_rows',
                                     },
                                 },
                             ],
@@ -1135,4 +1242,4 @@ export const GetUsersDocument = {
             },
         },
     ],
-} as unknown as DocumentNode<GetUsersQuery, GetUsersQueryVariables>
+} as unknown as DocumentNode<InsertTaskMutation, InsertTaskMutationVariables>
